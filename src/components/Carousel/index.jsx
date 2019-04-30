@@ -16,25 +16,26 @@ const Boximage = styled.div`
     margin-right: 20px;
     margin-left: 20px;
 `;
-const carrousel = new Array(10).fill();
-const carouselItens = (id, url, alt) => {
-    [
-        { id: '1', url: 'https://react-responsive-carousel.js.org/assets/1.jpeg', alt: '_' },
-        { id: '2', url: 'https://react-responsive-carousel.js.org/assets/2.jpeg', alt: '_' },
-        { id: '3', url: 'https://react-responsive-carousel.js.org/assets/3.jpeg', alt: '_' },
-    ];
-};
-const imageUrl = 'https://react-responsive-carousel.js.org/assets/3.jpeg';
+// const carrousel = new Array(10).fill();
 const itemsPerPage = 3;
+const carouselItens = [
+    { id: '1', url: 'https://react-responsive-carousel.js.org/assets/1.jpeg', alt: '_' },
+    { id: '2', url: 'https://react-responsive-carousel.js.org/assets/2.jpeg', alt: '_' },
+    { id: '3', url: 'https://react-responsive-carousel.js.org/assets/3.jpeg', alt: '_' },
+];
 const BoxCarousel = () => {
     return (
         <fragment>
-            <TopBox>
-                <Rating />
-            </TopBox>
-            <Boximage>
-                <img src={imageUrl} />
-            </Boximage>
+            {carouselItens.map(item => (
+                <div>
+                    <TopBox>
+                        <Rating />
+                    </TopBox>
+                    <Boximage>
+                        <img key={item.id} src={item.url} alt={item.alt} />
+                    </Boximage>
+                </div>
+            ))}
         </fragment>
     );
 };
@@ -47,9 +48,7 @@ const ProductCarousel = () => {
                 centerSlidePercentage={100 / itemsPerPage}
                 centerMode={true}
             >
-                {carrousel.map((item, index) => (
-                    <BoxCarousel />
-                ))}
+                <BoxCarousel />
             </Carousel>
         </ContainerCarousel>
     );
