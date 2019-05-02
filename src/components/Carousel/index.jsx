@@ -18,28 +18,8 @@ const Boximage = styled.div`
 `;
 // const carrousel = new Array(10).fill();
 const itemsPerPage = 3;
-const carouselItens = [
-    { id: '1', url: 'https://react-responsive-carousel.js.org/assets/1.jpeg', alt: '_' },
-    { id: '2', url: 'https://react-responsive-carousel.js.org/assets/2.jpeg', alt: '_' },
-    { id: '3', url: 'https://react-responsive-carousel.js.org/assets/3.jpeg', alt: '_' },
-];
-const BoxCarousel = () => {
-    return (
-        <fragment>
-            {carouselItens.map(item => (
-                <div>
-                    <TopBox>
-                        <Rating />
-                    </TopBox>
-                    <Boximage>
-                        <img key={item.id} src={item.url} alt={item.alt} />
-                    </Boximage>
-                </div>
-            ))}
-        </fragment>
-    );
-};
-const ProductCarousel = () => {
+
+const ProductCarousel = props => {
     return (
         <ContainerCarousel>
             <Carousel
@@ -48,7 +28,16 @@ const ProductCarousel = () => {
                 centerSlidePercentage={100 / itemsPerPage}
                 centerMode={true}
             >
-                <BoxCarousel />
+                {props.products.map(item => (
+                    <div>
+                        <TopBox>
+                            <Rating />
+                        </TopBox>
+                        <Boximage>
+                            <img key={item.id} src={item.url} alt={item.alt} />
+                        </Boximage>
+                    </div>
+                ))}
             </Carousel>
         </ContainerCarousel>
     );
